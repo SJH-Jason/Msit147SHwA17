@@ -55,19 +55,19 @@
         //console.log(salary);
         //})
 
-        let datas = ""
-        emp.employees.forEach(theEmp => {
-            const { name, workYears, salary } = theEmp;
-            const data = `
-               <tr>
-                 <td>${name}</td>
-                 <td>${workYears}</td>
-                 <td>${salary}</td>
-               </tr>
-               `;
-          datas += data;
-        })
-        document.querySelector('#employeesTable>tbody').innerHTML = datas;
+        //let datas = ""
+        //emp.employees.forEach(theEmp => {
+        //    const { name, workYears, salary } = theEmp;
+        //    const data = `
+        //       <tr>
+        //         <td>${name}</td>
+        //         <td>${workYears}</td>
+        //         <td>${salary}</td>
+        //       </tr>
+        //       `;
+        //  datas += data;
+        //})
+        //document.querySelector('#employeesTable>tbody').innerHTML = datas;
 
         //const datas = emp.employees.map(theEmp => {
         //    const { name, workYears, salary } = theEmp;
@@ -83,6 +83,20 @@
         //document.querySelector('#employeesTable>tbody').innerHTML = datas.join("");
 
         //map 回傳的是陣列值 用 join 把每筆陣列值讀出來
+
+        let datas = "";
+        $.each(emp.employees, function (index, theEmp) {
+            const { name, workYears, salary } = theEmp;
+            const data = `
+               <tr>
+                 <td>${name}</td>
+                 <td>${workYears}</td>
+                 <td>${salary}</td>
+               </tr>
+               `;
+            datas += data;
+        });
+        $('#employeesTable>tbody').html(datas);
 </script>
 }
 @section Styles{
