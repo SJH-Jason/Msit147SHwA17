@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>旅遊景點區</h1>
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body" id="CardTitle">
+@*        <h5 class="card-title" id="CardTitle">Card title</h5>*@
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+
+@section Scripts{
+<script src="~/js/travel.js"></script>
+<script>
+
+    console.log(spots.CommonFormat.Section[0].stitle)
+        let datas = ""
+        spots.CommonFormat.forEach(theStitle => {
+            const(stitle) = theStitle
+            const data = `<h5>${stitle}</h5>`;
+            datas += data;
+        });
+        //document.querySelector('#CardTitle').innerHTML = datas;
+        console.log(datas)
+</script> 
+}
