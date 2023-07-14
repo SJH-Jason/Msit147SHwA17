@@ -18,6 +18,7 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+
 @section Scripts{
 <script>
         //JSON
@@ -84,7 +85,7 @@
 
         //map 回傳的是陣列值 用 join 把每筆陣列值讀出來
 
-        //用Jquery $.each的應用
+        //作業一 用Jquery $.each的應用
         let datas = "";
         $.each(emp.employees, function (index, theEmp) {
             const { name, workYears, salary } = theEmp;
