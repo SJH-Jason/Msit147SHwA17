@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "First";
+}
+
+<h1>First</h1>
+<button class="btn btn-primary" id="btn1">Click</button>
+<div id="div1"></div>
+
+@section Scripts{
+    <script>
+        //const btn=document.querySelector('#btn1');
+        //btn.addEventListener('click',()=>{
+        //    const theDiv=document.querySelector('#div1');
+        //    theDiv.innerHTML='<h2>Hello Ajax!!</h2>'
+        //})
+
+        //$('#btn1').click(function () {
+        //    $('#div1').html('<h2>Hello Ajax2!!</h2>');
+        //});
+        const btn = document.querySelector('#btn1');
+        btn.addEventListener('click', () => {
+           const xhr=new XMLHttpRequest();
+
+           xhr.open("GET",'/Api/index');
+           xhr.send();
+           
+           xhr.addEventListener('load',()=>{
+               const data=xhr.responseText
+               const theDiv = document.querySelector('#div1');
+               theDiv.innerHTML=`<h2>${data}</h2>`
+           })
+        })
+
+        //$('#btn1').click(function () {
+        //    $.get('/Api/index', (data)=> {
+        //        $('#div1').html(`<h2>${data}2</h2>`);
+        //    });
+        //});
+    </script>
+}
+
+@section Styles{
+
+}
