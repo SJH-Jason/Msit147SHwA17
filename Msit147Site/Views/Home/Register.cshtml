@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<div class="rol">
+    <div class="col-3">
+
+    </div>
+    <div class="col-6">
+        <form method="Post" name="FormRegister">
+            <div class="mb-3">
+                <label for="InputUserName" class="form-label">姓名</label>
+                <input type="text" class="form-control" id="InputUserName" name="Name">
+                <div id="namelHelp" class="form-text"></div>
+            </div>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">電子郵件</label>
+                <input type="email" class="form-control" id="InputEmail" name="Email">
+            </div>
+            <div class="mb-3">
+                <label for="InputAge" class="form-label">年紀</label>
+                <input type="number" class="form-control" id="InputAge" name="Age">
+            </div>
+            <div class="mb-3 form-check">
+                <label type="formFile" class="form-lable" id="exampleCheck1"></label>
+                <input class="form-control" type="file" id="formFile" name="Photo"/>
+            </div>
+            <button type="submit" class="btn btn-primary" id="buttonSubmit">Submit</button>
+        </form>
+        <div id="div1" class="alert alert-secondary mt-3"></div>
+
+    </div>
+    <div class="col-3">
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        const btnSubmit=document.querySelector('#buttonSubmit')
+        const divAlert=document.querySelector('#div1')
+        
+        btnSubmit.addEventListener('click',event=>{
+            event.preventDefault();
+
+            var formData = new FormData(FormRegister);
+            const xhr=new XMLHttpRequest();
+            xhr.open('Post','/api/register')
+            //用formData 包起來
+            //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+            //xhr.send('Name=Jason&Age=30&Email=jason@123.com');
+            xhr.send(formData);
+            xhr.addEventListener('load',()=>{
+                const data=xhr.responseText;
+                divAlert.innerHTML=data;
+            })
+        })
+    </script>
+}
+
+@section Styles{
+    <style>
+
+    </style>
+}

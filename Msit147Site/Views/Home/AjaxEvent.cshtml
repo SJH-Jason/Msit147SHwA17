@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "AjaxEvent";
+}
+
+<h1>AjaxEvent</h1>
+<input type="text" id="userName" />
+<button id="ajaxStart" class="btn btn-primary">Ajax Start</button>
+<button id="ajaxStop" class="btn btn-warning">Ajax Stop</button>
+<img src="~/images/Plant.gif" id="startImg"/>
+<div id="div1" class="alert alert-secondary mt-3"></div>
+
+@section Scripts{
+    <script>
+        const btnStart=document.querySelector('#ajaxStart');
+        const btnStop=document.querySelector('#ajaxStop');
+        const divAlert=document.querySelector('#div1');
+        const txtName = document.querySelector('#userName')
+        const theImg = document.querySelector('#startImg')
+
+        btnStart.addEventListener('click',()=>{
+             const xhr = new XMLHttpRequest;
+
+            xhr.addEventListener('loadstart', () => {
+                divAlert.innerHTML += "Ajax開始<br>";
+                theImg.style.display = "inline";
+                btnStart.setAttribute('disabled', 'disabled');
+                btnStart.innerHTML = "執行中....";
+            })
+
+            xhr.addEventListener('loadend', () => {
+                divAlert.innerHTML += "Ajax結束<br>";
+                theImg.style.display = "none";
+                btnStart.removeAttribute('disabled');
+                btnStart.innerHTML = "Ajax Start";
+            })
+
+            xhr.open('GET', `/Api/AjaxEvent?userName=${txtName.value}`)
+            xhr.timeout=6000;
+            xhr.send();
+
+            xhr.addEventListener('timeout', () => {
+                const data = xhr.responseText
+                divAlert.innerHTML += "連線逾時，請稍後再試!<br>"
+            })
+
+            xhr.addEventListener('abort', () => {
+                const data = xhr.responseText
+                divAlert.innerHTML += "已停止作業!<br>"
+            })
+
+            xhr.addEventListener('load', () => {
+                const data = xhr.responseText
+                divAlert.innerHTML += data+"<br>"
+            })
+
+            btnStop.addEventListener('click', () => {
+                xhr.abort();
+            })
+        })
+
+    </script>
+}
+
+@section Styles{
+    <style>
+        img{
+            display:none
+        }
+    </style>
+
+}

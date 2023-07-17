@@ -20,6 +20,16 @@ namespace Msit147Site.Controllers
             return View();
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult AjaxEvent()
+        {
+            return View();
+        }
+
         public IActionResult First()
         {
             return View();
