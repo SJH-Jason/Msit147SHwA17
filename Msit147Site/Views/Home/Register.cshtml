@@ -30,7 +30,9 @@
             </div>
             <button type="submit" class="btn btn-primary" id="buttonSubmit">Submit</button>
         </form>
-        <div id="div1" class="alert alert-secondary mt-3"></div>
+        <div id="div1" class="alert alert-secondary mt-3">
+            <img id="img1" style="width: 200px; height: 200px;display:none">
+        </div>
 
     </div>
     <div class="col-3">
@@ -58,6 +60,31 @@
                 divAlert.innerHTML=data;
             })
         })
+
+        //作業五練習
+        window.addEventListener('DOMContentLoaded', () => {
+            const fileInput = document.querySelector('#formFile');
+            const previewImg = document.querySelector('#img1');
+
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = (e) => {
+                        previewImg.src = e.target.result;
+                        previewImg.style.display = 'block'
+
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    previewImg.src = '';
+                    previewImg.style.display = 'none'
+                }
+            });
+        });
     </script>
 }
 
