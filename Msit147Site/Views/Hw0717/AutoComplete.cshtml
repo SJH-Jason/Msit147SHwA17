@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "AutoComplete";
+}
+
+<h1>AutoComplete</h1>
+
+<input type="text" id="search" />
+<button class="btn btn-primary">查詢</button>
+
+@section Scripts{
+
+    <script>
+        $(function () {
+            var availableTags = [
+                "A",
+                "App",
+                "Apple",
+                "Abcd",
+                "B",
+                "Bye",
+                "Baby",
+                "C",
+                "C++",
+                "C#",
+                "Count",
+                "Cold",
+                "Every",
+                "For",
+                "Gril",
+                "His",
+                "Java",
+                "JavaScript",
+                "Jason",
+                "Jane",
+                "PHP",
+                "PTT",
+                "Ruby",
+                "School",
+                "she"
+            ];
+            $("#search").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
+}
+
+@section Styles{
+    <style>
+
+    </style>
+}
+

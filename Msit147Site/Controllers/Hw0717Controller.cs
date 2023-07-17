@@ -13,5 +13,10 @@ namespace Msit147Site.Controllers
         {  //作業六
             return View();
         }
+
+        public IActionResult AutoComplete()
+        {  //作業七 練習 jQuery加兩個ui連結
+            return View();
+        }
     }
 }
