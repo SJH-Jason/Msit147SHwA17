@@ -26,7 +26,7 @@ namespace Msit147Site.Controllers
         }
 
         public IActionResult Register()
-        {
+        {  //作業五
             return View();
         }
 

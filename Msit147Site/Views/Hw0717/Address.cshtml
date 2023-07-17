@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Address";
+}
+
+<h1>Address</h1>
+
+<select id="selectCity">
+</select>
+<select id="selectDistrict">
+</select>
+<select id="selectRoad">
+</select>
+
+@section Scripts{
+    <script>
+        const selCity = document.querySelector('#selectCity');
+        const selDistrict = document.querySelector('#selectDistrict');
+        const selRoad = document.querySelector('#selectRoad');
+
+        async function LoadCities(){
+            const response = await fetch('/api/cities');
+            const datas = await response.json();
+            let cities = '';
+            datas.forEach(city => {
+                cities += `<option value="${city}">${city}</option>`;
+            });
+            selCity.innerHTML = cities;
+            LoadDistricts();
+        }
+
+        async function LoadDistricts() {
+            const city = selCity.options[selCity.selectedIndex].value;
+            const response = await fetch(`/api/districts?city=${city}`);
+            const datas = await response.json();
+            let districts = '';
+            datas.forEach(district => {
+                districts += `<option value="${district}">${district}</option>`;
+            });
+            selDistrict.innerHTML = districts;
+            LoadRoads();
+        }
+
+        async function LoadRoads() {
+            const district = selDistrict.options[selDistrict.selectedIndex].value;
+            const response = await fetch(`/api/roads?SiteId=${district}`);
+            const datas = await response.json();
+            let roads = '';
+            datas.forEach(road => {
+                roads += `<option value="${road}">${road}</option>`;
+            })
+            selRoad.innerHTML = roads;
+        }
+
+        LoadCities();
+
+        selCity.addEventListener('change', LoadDistricts);
+        selDistrict.addEventListener('change', LoadRoads);
+
+    </script>
+}
+
+@section Styles{
+    <style>
+
+    </style>
+}
