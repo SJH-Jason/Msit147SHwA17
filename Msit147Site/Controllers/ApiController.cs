@@ -85,5 +85,11 @@ namespace Msit147Site.Controllers
             return Json(roads);
         }
 
+
+        public IActionResult CheckAccount ()
+        {
+            var names=_context.Members.Select(a => a.Name);
+            return Json(names);
+        }
     }
 }

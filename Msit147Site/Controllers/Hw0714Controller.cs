@@ -10,6 +10,11 @@ namespace Msit147Site.Controllers
         }
 
         public IActionResult Address()
+        {  //作業四
+            return View();
+        }
+
+        public IActionResult CheckName()
         {
             return View();
         }

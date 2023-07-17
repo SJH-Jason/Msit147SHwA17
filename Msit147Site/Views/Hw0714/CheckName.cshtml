@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "CheckName";
+}
+
+<h1>CheckName</h1>
+
+<form>
+    <div class="mb-3">
+        <label for="txtName" class="form-label">姓名</label>
+        <input type="text" class="form-control" id="txtName" aria-describedby="nameHelp">
+        <div id="nameHelp" class="form-text"></div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts{
+          <script>
+            document.querySelector('form').addEventListener('submit', event=> {
+                event.preventDefault();
+
+                const name = document.querySelector('#txtName').value;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '/api/CheckAccount?name=' + name, true);
+                xhr.onreadystatechange = () => 
+                {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var data = JSON.parse(xhr.responseText);
+                        if (data.includes(name)) {
+                            document.querySelector('#nameHelp').textContent = '此姓名已存在。';
+                        } else {
+                            document.querySelector('#nameHelp').textContent = '此姓名可使用。';
+                        }
+                    }
+                }
+                xhr.send();
+                });
+        </script>
+}
+
+@section Styles{
+
+}
+
