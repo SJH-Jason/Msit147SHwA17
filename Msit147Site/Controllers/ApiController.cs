@@ -57,6 +57,13 @@ namespace Msit147Site.Controllers
 
         }
 
+        public IActionResult GetImageByte(int id=1)
+        {
+            Members? _member = _context.Members.Find(id);
+            byte[]? img =_member.FileData;
+            return File(img, "image/jpg");
+        }
+
 
 
     }
