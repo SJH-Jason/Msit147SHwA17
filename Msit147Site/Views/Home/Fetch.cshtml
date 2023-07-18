@@ -4,31 +4,48 @@
 }
 
 <h1>Fetch</h1>
-
+<img src="~/images/Plant.gif" />
+<img id="img1" />
 @section Scripts{
     <script>
-        fetch("/api/Index")
-            .then(response => {
-                //console.log(response);
-                //console.log(response.text());
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    console.log(`${response.status}:${response.statusText}`);
-                }
-            })
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        // console.log(fetch("/api/Index"));
+        //fetch("/api/Index")
+        //    .then(response => {
+        //        //console.log(response);
+        //        //console.log(response.text());
+        //        if (response.ok) {
+        //            return response.text();
+        //        } else {
+        //            console.log(`${response.status}:${response.statusText}`);
+        //        }
+        //    })
+        //    .then(data => {
+        //        console.log(data);
+        //    })
+        //    .catch(error => {
+        //        console.log(error);
+        //    });
+
         //async function CallAjax() {
-        //    const response = await fetch("/api/Index");
+        //    //@Url.Action()
+
+        //    const response = await fetch('@Url.Content("~/api/Index")');
         //    const data = await response.text();
         //    console.log(data);
         //}
+
         //CallAjax();
+
+        fetch('@Url.Content("~/api/GetImageByte/1")')
+        .then(response=>{
+            if(response.ok){
+                return response.blob();
+            }
+        })
+        .then(data=>{
+            const myImg=document.querySelector('#img1');
+            myImg.src=URL.createObjectURL(data);
+        })
         </script>
 
         }

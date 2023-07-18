@@ -20,7 +20,7 @@
         const selRoad = document.querySelector('#selectRoad');
         function LoadCities() {
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', '/api/cities');
+            xhr.open('GET', '@Url.Content("~/api/cities")');
             xhr.send();
 
             xhr.addEventListener('load', () => {
@@ -38,7 +38,7 @@
         function LoadDistricts() {
             const city = selCity.options[selCity.selectedIndex].value;
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', `/api/districts?city=${city}`);
+            xhr.open('GET', `@Url.Content("~/api/districts?city=")${city}`);
             xhr.send();
 
             xhr.addEventListener('load', () => {
@@ -56,7 +56,7 @@
         function LoadRoads() {
             const district = selDistrict.options[selDistrict.selectedIndex].value;
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', `/api/roads?SiteId=${district}`);
+            xhr.open('GET', `@Url.Content("~/api/roads?SiteId=")${district}`);
             xhr.send();
 
             xhr.addEventListener('load', () => {

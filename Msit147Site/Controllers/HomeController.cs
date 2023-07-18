@@ -50,5 +50,26 @@ namespace Msit147Site.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult jQuery()
+        {  
+            return View();
+        }
+
+        public IActionResult History()
+        {
+            return View();
+        }
+
+        public IActionResult ShipperCors()
+        {
+            return View();
+        }
+
+        public IActionResult ShipperCorsEmpty()
+        {
+            return View();
+        }
+
     }
 }
