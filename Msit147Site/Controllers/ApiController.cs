@@ -21,6 +21,16 @@ namespace Msit147Site.Controllers
 
             //return Content("Hello World!!", "application/msword");
         }
+
+        public IActionResult Index2(string name, int age = 20)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                name = "Guest";
+            }
+
+            return Content($"Hello {name}, You are {age} years old.");
+        }
         public IActionResult AjaxEvent(string userName)
         {
             if (string.IsNullOrEmpty(userName))

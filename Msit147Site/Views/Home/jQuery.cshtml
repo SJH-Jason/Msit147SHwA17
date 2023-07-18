@@ -16,22 +16,42 @@
 @section Scripts{
     <script>
         $('#buttonGet').click(function () {
-            $('#divAlert').text("GET")
-        })
+            $.get('@Url.Content("~/Api/index2")', { "name": "Jack", "age": 25 }, function (data) {
+                $('#divAlert').text(data);
+            });
+        });
+
         $('#buttonPost').click(function () {
-            $('#divAlert').text("POST")
-        })
+            $.post('@Url.Content("~/Api/index2")', { "name": "Yoona", "age": 20 }, function (data) {
+                $('#divAlert').text(data);
+            });
+        });
+
         $('#buttonJson').click(function () {
-            $('#divAlert').text("JSON")
-        })
+            $.getJSON('@Url.Content("~/api/cities")', function (datas) {
+                $.each(datas, function (idx, city) {
+                    console.log(city);
+                });
+            });
+        });
         $('#buttonLoad').click(function () {
             $('#divAlert').text("LOAD")
         })
         $('#buttonAjax').click(function () {
-            $('#divAlert').text("AJAX")
+            $.ajax({
+                url:'@Url.Content("~/Api/index2")',
+                type:'GET', //POST
+                data: { "name": "Jiso", "age": 23 }
+            }).done(data=>{
+                $('#divAlert').text(data);
+            })
         })
+
         $('#buttonCors').click(function () {
-            $('#divAlert').text("CORs")
+            $.get('https://localhost:7296/api/Shippers', function (data) {
+                console.log(data);
+            })
+            //$('#divAlert').text("CORs")
         })
 
     </script>
